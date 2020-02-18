@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+
+  user:
+    create: "User created successfully!"
+    login: "Well come, enjoy the app!"
+    logout: "Come back soon ..."
+    errors:
+      login: "Email or Password incorrect!, please try again ..."
+      no_user: "Please login first ..."

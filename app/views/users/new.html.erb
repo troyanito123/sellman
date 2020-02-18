@@ -1,0 +1,38 @@
+<h1>Register</h1>
+<hr>
+<%= form_for @user do |f| %>
+  <div>
+    <%= f.label 'Name:' %>
+    <%= f.text_field :name %>
+    <small>
+      <%= @user.errors.messages[:name].first %>
+    </small>
+  </div>
+
+  <div>
+    <%= f.label 'Email:' %>
+    <%= f.email_field :email %>
+    <small>
+      <%= @user.errors.messages[:email].first %>
+    </small>
+  </div>
+
+  <div>
+    <%= f.label 'Password:' %>
+    <%= f.password_field :password %>
+    <small>
+      <%= @user.errors.messages[:password].first %>
+    </small>
+  </div>
+
+  <div>
+    <%= f.label 'Password confirmation:' %>
+    <%= f.password_field :password_confirmation %>
+    <small>
+      <%= @user.errors.messages[:password_confirmation].first %>
+    </small>
+  </div>
+
+  <%= f.submit 'Register' %>
+
+<% end %>

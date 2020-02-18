@@ -10,6 +10,19 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="app">
+      <header>
+        <%= render 'layouts/header' %>
+      </header>
+
+      <main>
+        <%= render 'layouts/flash_messages' %>
+        <%= yield %>
+      </main>
+
+      <footer>
+        Sellman @ <%= Time.now.strftime("%Y")%>
+      </footer>
+    </div>
   </body>
 </html>

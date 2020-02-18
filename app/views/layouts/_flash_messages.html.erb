@@ -1,0 +1,12 @@
+
+<div class="row mt-5">
+  <div class="col-12 col-sm-10 col-lg-8 mx-auto">
+
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %> " role="alert">
+        <%= message %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
