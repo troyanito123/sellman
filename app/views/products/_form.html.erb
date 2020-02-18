@@ -25,9 +25,11 @@
   <div>
     <%= f.label 'Images' %>
     <%= f.file_field :images, multiple: true %>
-    <small>
-      <%#= @product.errors.messages[:cost].first %>
-    </small>
+      <% @product.errors[:images].each do |error| %>
+      <small>
+        <%= error %>
+      </small>
+      <% end %>
   </div>
   <%= f.submit btnTxt %>
   <%= link_to 'Cancel', products_path %>
