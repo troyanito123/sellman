@@ -37,6 +37,8 @@ en:
 
   user:
     create: "User created successfully!"
+    update: "User updated successfully!"
+    destroy: "User has been deleted!"
     login: "Well come, enjoy the app!"
     logout: "Come back soon ..."
     errors:

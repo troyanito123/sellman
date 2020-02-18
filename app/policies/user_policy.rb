@@ -1,6 +1,6 @@
-class ProductPolicy < ApplicationPolicy
+class UserPolicy < ApplicationPolicy
   def index?
-    true
+    user.admin?
   end
 
   def show?
@@ -8,7 +8,7 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def new?
-    !user.nil?
+    user.nil? || user.admin?
   end
 
   def create?
@@ -16,7 +16,7 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin? || user == record.user
+    user.admin? || record == user
   end
 
   def update?

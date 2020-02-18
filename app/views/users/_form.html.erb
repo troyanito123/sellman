@@ -1,0 +1,73 @@
+<h1> <%= title %> </h1>
+<hr>
+
+<div class="row justify-content-center">
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar, alt: "avatar", size: "150", class: 'rounded-circle' %>
+  <% elsif !@user.new_record? %>
+    <%= image_tag "no-user.png", alt: "NO USER", size: "150", class: 'rounded-circle' %>
+  <% end %>
+</div>
+
+<%= form_for @user do |f| %>
+  <div>
+    <%= f.label 'Name:' %>
+    <%= f.text_field :name %>
+    <small>
+      <%= @user.errors.messages[:name].first %>
+    </small>
+  </div>
+
+  <div>
+    <%= f.label 'Email:' %>
+    <%= f.email_field :email %>
+    <small>
+      <%= @user.errors.messages[:email].first %>
+    </small>
+  </div>
+
+  <% if logged_in? %>
+    <% if current_user.admin? %>
+      <div class="form-group">
+        <%= f.label 'Role:' %>
+        <% @roles.each do |role| %>
+          <div class="form-check">
+            <%= f.radio_button :role, role.id, class: 'form-check-input',
+                               checked: @user.new_record? ? role.code == 'USER' : @user.role.id == role.id %>
+            <%= f.label :role, role.name, class: 'form-check-label' %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label 'Avatar' %> <br>
+      <%= f.file_field :avatar %> <br>
+
+      <small class="text-danger">
+        <%#= @user.errors[:avatar].first %>
+      </small>
+    </div>
+
+  <% end %>
+
+  <div>
+    <%= f.label 'Password:' %>
+    <%= f.password_field :password %>
+    <small>
+      <%= @user.errors.messages[:password].first %>
+    </small>
+  </div>
+
+  <div>
+    <%= f.label 'Password confirmation:' %>
+    <%= f.password_field :password_confirmation %>
+    <small>
+      <%= @user.errors.messages[:password_confirmation].first %>
+    </small>
+  </div>
+
+  <%= f.submit btnTxt %>
+  <%= link_to 'Cancel', current_user.admin? ? users_path : products_path %>
+
+<% end %>

@@ -6,6 +6,17 @@
     <li>
       <%= link_to 'New product', new_product_path %>
     </li>
+    <% if policy(User).new? %>
+      <li>
+        <%= link_to 'List Users', users_path %>
+      </li>
+      <li>
+        <%= link_to 'New User', new_user_path %>
+      </li>
+    <% end %>
+    <li>
+      <%= link_to current_user.name, edit_user_path(current_user) %>
+    </li>
     <li>
       <%= link_to 'logout', logout_path, method: :delete %>
     </li>
