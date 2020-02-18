@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   belongs_to :role
+  has_many :products
 
   before_save {self.email = email.downcase}
 

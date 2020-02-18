@@ -1,0 +1,27 @@
+<h1> <%= title %> </h1>
+<hr>
+<%= form_for @product do |f| %>
+  <div>
+    <%= f.label 'Title' %>
+    <%= f.text_field :title %>
+    <small>
+      <%= @product.errors.messages[:title].first %>
+    </small>
+  </div>
+  <div>
+    <%= f.label 'Description' %>
+    <%= f.text_area :description %>
+    <small>
+      <%= @product.errors.messages[:description].first %>
+    </small>
+  </div>
+  <div>
+    <%= f.label 'Cost' %>
+    <%= f.number_field :cost %>
+    <small>
+      <%= @product.errors.messages[:cost].first %>
+    </small>
+  </div>
+  <%= f.submit btnTxt %>
+  <%= link_to 'Cancel', products_path %>
+<% end %>

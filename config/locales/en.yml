@@ -32,6 +32,8 @@
 en:
   hello: "Hello world"
 
+  not_found: "Ooops ... record not found!"
+
   user:
     create: "User created successfully!"
     login: "Well come, enjoy the app!"
@@ -39,3 +41,8 @@ en:
     errors:
       login: "Email or Password incorrect!, please try again ..."
       no_user: "Please login first ..."
+
+  product:
+    create: "Product created successfully!"
+    update: "Product updated successfully!"
+    destroy: "Product destroy successfully!"
