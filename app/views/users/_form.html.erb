@@ -68,6 +68,8 @@
   </div>
 
   <%= f.submit btnTxt %>
-  <%= link_to 'Cancel', current_user.admin? ? users_path : products_path %>
+  <% if logged_in? %>
+    <%= link_to 'Cancel', current_user.admin? ? users_path : products_path %>
+  <% end %>
 
 <% end %>
