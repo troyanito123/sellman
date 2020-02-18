@@ -11,10 +11,12 @@ class Product < ApplicationRecord
   VALID_FORMAT_FOR_AVATAR = %w(jpg jpeg png)
 
   def images_validate
-    images.each do |image|
-      type = image.content_type.split('/').last
-      if !VALID_FORMAT_FOR_AVATAR.include?(type)
-        errors.add(:images, "The #{image.filename} is a format no support!")
+    if images.attached?
+      images.each do |image|
+        type = image.content_type.split('/').last
+        if !VALID_FORMAT_FOR_AVATAR.include?(type)
+          errors.add(:images, "The #{image.filename} is a format no support!")
+        end
       end
     end
   end
