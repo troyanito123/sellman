@@ -16,9 +16,11 @@ class User < ApplicationRecord
   VALID_FORMAT_FOR_AVATAR = %w(jpg jpeg png)
 
   def avatar_validate
-    type = avatar.content_type.split('/').last
-    if !VALID_FORMAT_FOR_AVATAR.include?(type)
-      errors.add(:avatar, "The only support formats are jpg, jpeg and png...")
+    if avatar.attached?
+      type = avatar.content_type.split('/').last
+      if !VALID_FORMAT_FOR_AVATAR.include?(type)
+        errors.add(:avatar, "The only support formats are jpg, jpeg and png...")
+      end
     end
   end
 

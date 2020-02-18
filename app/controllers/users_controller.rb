@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if current_user.admin?
+    if logged_in? && current_user.admin?
       role = Role.find(params[:user][:role])
     else
       role = Role.find_by(code: 'USER')
