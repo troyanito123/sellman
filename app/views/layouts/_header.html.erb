@@ -1,17 +1,20 @@
 <ul>
-  <li>
-    <%= link_to 'Products', products_path %>
-  </li>
-  <li>
-    <%= link_to 'New product', new_product_path %>
-  </li>
-  <li>
-    <%= link_to 'Login', login_path %>
-  </li>
-  <li>
-    <%= link_to 'Register', new_user_path %>
-  </li>
-  <li>
-    <%= link_to 'logout', logout_path, method: :delete %>
-  </li>
+  <% if logged_in? %>
+    <li>
+      <%= link_to 'Products', products_path %>
+    </li>
+    <li>
+      <%= link_to 'New product', new_product_path %>
+    </li>
+    <li>
+      <%= link_to 'logout', logout_path, method: :delete %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to 'Register', new_user_path %>
+    </li>
+    <li>
+      <%= link_to 'Login', login_path %>
+    </li>
+  <% end %>
 </ul>

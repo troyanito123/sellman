@@ -33,6 +33,7 @@ en:
   hello: "Hello world"
 
   not_found: "Ooops ... record not found!"
+  not_authorize: "You are not authorized to enter this section!"
 
   user:
     create: "User created successfully!"
