@@ -1,36 +1,42 @@
-<h1> <%= title %> </h1>
-<hr>
-<%= form_for @product do |f| %>
-  <div>
-    <%= f.label 'Title' %>
-    <%= f.text_field :title %>
-    <small>
-      <%= @product.errors.messages[:title].first %>
-    </small>
-  </div>
-  <div>
-    <%= f.label 'Description' %>
-    <%= f.text_area :description %>
-    <small>
-      <%= @product.errors.messages[:description].first %>
-    </small>
-  </div>
-  <div>
-    <%= f.label 'Cost' %>
-    <%= f.number_field :cost %>
-    <small>
-      <%= @product.errors.messages[:cost].first %>
-    </small>
-  </div>
-  <div>
-    <%= f.label 'Images' %>
-    <%= f.file_field :images, multiple: true %>
-      <% @product.errors[:images].each do |error| %>
-      <small>
-        <%= error %>
-      </small>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-8 bg-white mx-auto mb-3 px-4 pt-2 pb-4 shadow">
+      <h1 class="text-center text-primary"> <%= title %></h1>
+      <hr>
+      <%= form_for @product do |f| %>
+        <div class="form-group">
+          <%= f.label 'Title' %>
+          <%= f.text_field :title, class: 'form-control border-0 bg-light shadow-sm' %>
+          <small class="text-danger">
+            <%= @product.errors.messages[:title].first %>
+          </small>
+        </div>
+        <div class="form-group">
+          <%= f.label 'Description' %>
+          <%= f.text_area :description, class: 'form-control border-0 bg-light shadow-sm' %>
+          <small class="text-danger">
+            <%= @product.errors.messages[:description].first %>
+          </small>
+        </div>
+        <div class="form-group">
+          <%= f.label 'Cost' %>
+          <%= f.number_field :cost, class: 'form-control border-0 bg-light shadow-sm', min: 0 %>
+          <small class="text-danger">
+            <%= @product.errors.messages[:cost].first %>
+          </small>
+        </div>
+        <div class="form-group">
+          <%= f.label 'Images' %>
+          <%= f.file_field :images, multiple: true %>
+          <% @product.errors[:images].each do |error| %>
+            <small class="text-danger">
+              <%= error %>
+            </small>
+          <% end %>
+        </div>
+        <%= f.submit btnTxt, class: 'btn btn-primary btn-block' %>
+        <%= link_to 'Cancel', products_path, class: 'btn btn-secondary btn-block'  %>
       <% end %>
+    </div>
   </div>
-  <%= f.submit btnTxt %>
-  <%= link_to 'Cancel', products_path %>
-<% end %>
+</div>

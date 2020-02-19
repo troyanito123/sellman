@@ -7,9 +7,9 @@
 
       <div class="row justify-content-center">
         <% if @user.avatar.attached? %>
-          <%= image_tag @user.avatar, alt: "avatar", size: "150", class: 'rounded-circle' %>
+          <%= image_tag @user.avatar, alt: "avatar", size: "150", class: 'rounded-circle shadow' %>
         <% elsif !@user.new_record? %>
-          <%= image_tag "no-user.png", alt: "NO USER", size: "150", class: 'rounded-circle' %>
+          <%= image_tag "no-user.png", alt: "NO USER", size: "150", class: 'rounded-circle shadow' %>
         <% end %>
       </div>
 

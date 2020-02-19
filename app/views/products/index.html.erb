@@ -1,5 +1,11 @@
-<h1>Products</h1>
-<hr>
-<% @products.each do |product| %>
-  <%= render 'products/product', product: product %>
-<% end %>
+<div class="container-lg">
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-10 bg-white mx-auto mb-3 px-4 pt-2 pb-4 shadow">
+      <h1 class="text-center text-primary">Products</h1>
+      <hr>
+      <% @products.each do |product| %>
+        <%= render 'products/product', product: product %>
+      <% end %>
+    </div>
+  </div>
+</div>
