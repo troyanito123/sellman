@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  attr_accessor :reset_token
+
   belongs_to :role
   has_many :products, dependent: :destroy
   has_many :sends, dependent: :destroy
@@ -33,6 +36,36 @@ class User < ApplicationRecord
 
   def normal_user?
     role.code == 'USER'
+  end
+
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+               BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
+
+  def User.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest,  User.digest(reset_token))
+    update_attribute(:reset_send_at, Time.zone.now)
+  end
+
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
+  def password_reset_expired?
+    reset_send_at < 2.hours.ago
+  end
+
+  def authenticated?(attribute, token)
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
 end

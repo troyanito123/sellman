@@ -51,3 +51,7 @@ en:
     destroy: "Product destroy successfully!"
     interested: "The sell man te contactara!"
     send: "Product was send! wait the answer"
+
+  reset:
+    send: "Email sent with password reset instructions!"
+    no_email: "Email address not found!"

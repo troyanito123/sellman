@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-8 bg-white mx-auto mb-3 px-4 pt-2 pb-4 shadow">
+      <h1 class="text-center text-primary">Reset password</h1>
+      <hr>
+      <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+
+        <%= hidden_field_tag :email, @user.email %>
+
+        <div class="form-group">
+          <%= f.label 'Password:' %>
+          <%= f.password_field :password, class: 'form-control border-0 bg-light shadow-sm' %>
+         </div>
+        <small class="text-danger">
+          <%= @user.errors[:password].first %>
+        </small>
+
+        <div class="form-group">
+          <%= f.label 'Password confirmation:' %>
+          <%= f.password_field :password_confirmation, class: 'form-control border-0 bg-light shadow-sm' %>
+        </div>
+        <small class="text-danger">
+          <%= @user.errors[:password_confirmation].first %>
+        </small>
+
+        <%= f.submit 'Login', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
+  </div>
+</div>
