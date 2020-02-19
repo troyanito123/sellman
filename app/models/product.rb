@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :user
+  has_many :sends, dependent: :destroy
   has_many_attached :images
 
   validates :title, presence: true, length: {minimum: 2, maximum: 250}

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   belongs_to :role
   has_many :products, dependent: :destroy
+  has_many :sends, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
 
   before_save {self.email = email.downcase}
