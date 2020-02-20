@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-8 bg-white mx-auto mb-3 px-4 pt-2 pb-4 shadow">
+      <h1 class="text-center text-primary"> Magic Link </h1>
+      <hr>
+      <%= form_for :magic, url: magic_links_path do |f| %>
+        <div class="form-group">
+          <%= f.label 'Email:', class: 'text-primary' %>
+          <%= f.email_field :email, class: 'form-control border-0 bg-light shadow-sm' %>
+        </div>
+
+        <%= f.submit 'Enter and enjoy', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
+  </div>
+</div>

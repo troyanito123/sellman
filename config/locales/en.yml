@@ -46,11 +46,11 @@ en:
       no_user: "Please login first ..."
 
   product:
-    create: "Product created successfully!"
-    update: "Product updated successfully!"
-    destroy: "Product destroy successfully!"
+    create: "product created successfully!"
+    update: "product updated successfully!"
+    destroy: "product destroy successfully!"
     interested: "The sell man te contactara!"
-    send: "Product was send! wait the answer"
+    send: "product was send! wait the answer"
 
   reset:
     send: "Email sent with password reset instructions!"

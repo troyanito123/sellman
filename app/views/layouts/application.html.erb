@@ -18,7 +18,9 @@
       </header>
 
       <main>
-        <%= render 'layouts/flash_messages' %>
+        <div id="flash">
+          <%= render 'layouts/flash_messages' %>
+        </div>
         <%= yield %>
       </main>
 

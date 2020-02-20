@@ -1,31 +1,19 @@
 class ContactsController < ApplicationController
 
-  include ProductsHelper
-
-  before_action :send_one
-
   def create
-    product = Product.find(params[:id])
-    if product
-      ContactMailer.send_contact(current_user, product).deliver_now
-      send = Send.new
-      send.user = current_user
-      send.product = product
-      send.save
-      flash[:success] = "We send a mail to #{product.user.name}, wait his mail...."
-      redirect_to products_path
+    @product = Product.find(params[:id])
+    @success = false
+    if @product
+      send = ProductModule::ProductSend.new
+      if send.save_product(current_user, @product)
+        # ContactMailer.delay(run_at: 5.minutes.from_now).send_contact(current_user, product)
+        @success = true
+        flash.now[:success] = "We send a mail to #{@product.user.name}, wait his mail...."
+      else
+        flash[:danger] = "Ooopss ... mail not send"
+      end
     else
-      flash[:danger] = "Ooopss ... mail not send"
-      redirect_to products_path
-    end
-
-  end
-
-  private
-  def send_one
-    if send_contact?(Product.find(params[:id]))
-      flash[:warning] = I18n.t 'product.send'
-      redirect_to products_path
+      flash[:danger] = "product not found!"
     end
   end
 

@@ -1,0 +1,11 @@
+if (<%= @success %>) {
+    $('#<%= @product.id %>').replaceWith("<p class=\"text-warning\">Order send, please wait for the seller's response</p>");
+    $('#flash').html(" <%= j render 'layouts/flash_messages' %> ");
+} else {
+    $('#flash').html(" <%= j render 'layouts/flash_messages' %> ");
+    $("html, body").animate({
+        scrollTop: 0
+    }, 1000);
+}
+
+

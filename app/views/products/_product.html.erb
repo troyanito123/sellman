@@ -3,7 +3,7 @@
   <hr>
   <% if product.images.attached? %>
 
-   <% product.images.each do |image| %>
+    <% product.images.each do |image| %>
       <%= image_tag image, class: 'bg-white img-thumbnail rounded mx-auto img-fluid shadow m-3' %>
     <% end %>
   <% else %>
@@ -15,14 +15,19 @@
   <h4>Sell by: <%= product.user.name %></h4>
   <%= link_to 'Edit', edit_product_url(product), class: 'btn btn-primary btn-block' if policy(product).edit? %>
 
-  <% if send_contact?(product) %>
-    <p class="text-warning">Order send, please wait for the seller's response</p>
-  <% else %>
-    <% if current_user != product.user %>
-      <%= link_to "I am interested", contact_path(product), method: :post, class: 'btn btn-success btn-block'%>
+
+    <% if send_contact?(product) %>
+      <p class="text-warning">Order send, please wait for the seller's response</p>
+    <% else %>
+
+      <% if current_user != product.user %>
+      <div id="<%= product.id %>">
+        <%= link_to "I am interested", contact_path(product), method: :post, remote: true, class: 'btn btn-success btn-block' %>
+      </div>
+      <% end %>
     <% end %>
-  <% end %>
 
   <%= link_to 'Delete', product_path(product), method: :delete,
               data: {confirm: 'Are you sure?'}, class: 'text-danger' if policy(product).destroy? %>
+
 </div>

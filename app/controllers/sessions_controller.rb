@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   skip_before_action :logged_in_user
+  before_action :user_logging, only: [:new, :create]
 
   def new
   end
@@ -26,6 +27,13 @@ class SessionsController < ApplicationController
   private
   def session_params
     params.require(:session).permit(:email, :password)
+  end
+
+  def user_logging
+    if !current_user.nil?
+      flash[:danger] = "Please logout first!"
+      redirect_to root_path
+    end
   end
 
 

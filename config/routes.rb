@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources 'users'
   resources 'products'
   resources 'password_resets', only: [:new, :create, :edit, :update]
+  resources 'magic_links', only: [:new, :create, :edit, :update]
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

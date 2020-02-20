@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  attr_accessor :reset_token
+  has_secure_password
 
   belongs_to :role
   has_many :products, dependent: :destroy
@@ -15,12 +15,11 @@ class User < ApplicationRecord
             format: {with: VALID_EMAIL_REGEX}
   validates :password, length: {minimum: 5}, allow_blank: true
 
-  has_secure_password
-
   validate :avatar_validate
 
-  VALID_FORMAT_FOR_AVATAR = %w(jpg jpeg png)
+  attr_accessor :reset_token
 
+  VALID_FORMAT_FOR_AVATAR = %w(jpg jpeg png).freeze
   def avatar_validate
     if avatar.attached?
       type = avatar.content_type.split('/').last

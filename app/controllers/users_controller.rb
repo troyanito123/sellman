@@ -53,7 +53,6 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     flash[:success] = I18n.t 'user.destroy'
-    redirect_to users_path
   end
 
   private

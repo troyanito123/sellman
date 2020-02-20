@@ -1,10 +1,12 @@
 <div class="container-lg">
-  <div class="row">
-    <div class="col-12 col-md-10 col-lg-10 bg-white mx-auto mb-3 px-4 pt-2 pb-4 shadow">
-      <h1 class="text-center text-primary">List of users</h1>
-      <hr>
-      <% @users.each do |user| %>
-        <div class="row mb-3">
+
+  <h1 class="text-center text-primary bg-white">List of users</h1>
+  <hr>
+
+  <% @users.each do |user| %>
+    <div id="user<%= user.id%>" class="row">
+      <div class="col-12 col-md-10 col-lg-10 bg-white mx-auto mb-3  py-2 shadow">
+        <div class="row">
           <div class="col-12 col-md-4 col-lg-4">
             <div class="row justify-content-center">
               <% if user.avatar.attached? %>
@@ -19,11 +21,13 @@
             <p><strong class="text-primary">Email: </strong>  <%= user.email %></p>
             <p><strong class="text-primary">Role: </strong>  <%= user.role.name %></p>
             <%= link_to 'edit', edit_user_path(user), class: 'btn btn-primary btn-block' %>
-            <%= link_to 'Delete', user_path(user), method: :delete, data: {confirm: "Are your sure?"}, class: 'btn btn-danger btn-block' %>
+            <%= link_to 'Delete', user_path(user), method: :delete, data: {confirm: "Are your sure?"},
+                        remote: true, class: 'btn btn-danger btn-block' %>
           </div>
+
         </div>
-        <hr>
-      <% end %>
+      </div>
     </div>
-  </div>
+
+  <% end %>
 </div>
